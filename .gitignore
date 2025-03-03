@@ -1,0 +1,20 @@
+# env
+.env/
+env/
+venv/
+.venv/
+
+# logs
+logs
+
+# cache
+__pycache__
+*.pyc
+
+# static, media
+static
+media
+
+# other
+.idea
+.vscode/
