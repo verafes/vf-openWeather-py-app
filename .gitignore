@@ -13,7 +13,6 @@ __pycache__
 *.pyc
 
 # static, media
-static
 media
 
 # other
