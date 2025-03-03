@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Contact information">
+    <title>Weather in Your City</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='img/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='img/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='img/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ url_for('static', filename='img/site.webmanifest') }}">
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+<header class="heading">
+    <a href="/" aria-label="weather">
+        <img src="{{ url_for('static', filename='img/logo_white_cropped.png') }}" alt="Logo" class="logo">
+    </a>
+    <h1><strong>Weather in Your City</strong></h1>
+</header>
+<section id="description" class="data-container">
+    <p>This is a simple weather application built using HTML/CSS/JavaScript, API, and Python.</p>
+    <p>It allows users to check the weather forecast for locations within the United States.</p>
+    <p>Simply enter a US ZIP code to get current weather information.</p>
+
+    <form method="POST">
+        <label for="zipcode"></label>
+        <input type="number" name="zipcode" id="zipcode" placeholder="Enter US ZIP code" pattern="\d{5}"
+               title="Enter a 5-digit ZIP code" required>
+        <input type="submit" class="button" value="Get Weather">
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if weather_data %}
+        <div class="weather-box">
+            <div id="location" class="location city">{{ weather_data.city }}</div>
+            <div id="geo">Geo cords: {{ weather_data.latitude, weather_data.longitude }}</div>
+            <div id="weatherDesc" class="weather">Conditions: {{ weather_data.description }} <img
+                    src="{{ weather_data.icon }}" width="50" height="50" alt="Weather icon"></div>
+            <div id="temp" class="temperature">
+                <span id="tempValue">{{ weather_data.temperature }}</span>
+                <span id="tempUnit" class="unit">°F</span>
+            </div>
+            <div id="pressure-humidity">
+                Pressure: {{ weather_data.pressure }} hPa, Humidity: {{ weather_data.humidity }}%
+            </div>
+        </div>
+    {% endif %}
+
+    </section>
+    <footer>
+        <p class="footer-credit">
+            <small>All data from <a href="https://api.openweathermap.org" target="_blank">api.openweathermap.org</a> © {{ current_year }}</small>
+        </p>
+    </footer>
+</body>
+</html>

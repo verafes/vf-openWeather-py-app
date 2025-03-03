@@ -45,16 +45,14 @@ The project is structured as follows:
 1. Clone the repository.
 2. Create a Virtual Environment `python -m venv venv`
 3. Install Python dependencies: `pip install -r requirements.txt`
-4. Open the `index.html` file in your web browser.
-5. Enter the zipcode of the location you want to check the weather for.
-6. Get an API key from [OpenWeatherMap](https://openweathermap.org/).
-7. Add your OpenWeather API key to config.py:
+4. Get an API key from [OpenWeatherMap](https://openweathermap.org/).
+5. Add your OpenWeather API key to config.py:
     ```
     API_KEY = "your_api_key_here"
     ```
    
 ## Usage
-1. Run the app: `python app.py`
+1. Run the app: `flask run`
 2. Visit `http://127.0.0.1:5000/` in your browser.
 3. Enter a 5-digit ZIP code  to get current weather details.
 4. View weather details or error messages if the input is invalid.
