@@ -42,25 +42,38 @@
     {% endif %}
 
     {% if weather_data %}
-        <div class="weather-box">
-            <div id="location" class="location city">{{ weather_data.city }}</div>
-            <div id="geo">Geo cords: {{ weather_data.latitude, weather_data.longitude }}</div>
-            <div id="weatherDesc" class="weather">Conditions: {{ weather_data.description }} <img
-                    src="{{ weather_data.icon }}" width="50" height="50" alt="Weather icon"></div>
-            <div id="temp" class="temperature">
-                <span id="tempValue">{{ weather_data.temperature }}</span>
-                <span id="tempUnit" class="unit">°F</span>
+        {% if weather_data is string %}
+            <div id="seasonImage">
+                <img src="{{ weather_data }}" alt="City Image" width="400" height="300">
             </div>
-            <div id="pressure-humidity">
-                Pressure: {{ weather_data.pressure }} hPa, Humidity: {{ weather_data.humidity }}%
+        {% else %}
+            <div class="weather-box">
+                <div id="location" class="location city">{{ weather_data.city }}</div>
+                <div id="geo">Geo cords: {{ weather_data.latitude, weather_data.longitude }}</div>
+                <div id="cityImage">
+                    <img src="{{ weather_data.image_url }}" alt="City Image" width="350" height="250">
+                </div>
+                <div id="weatherDesc" class="weather">Conditions: {{ weather_data.description }} <img
+                        src="{{ weather_data.icon }}" width="50" height="50" alt="Weather icon"></div>
+                <div id="temp" class="temperature">
+                    <span id="tempValue">{{ weather_data.temperature }}</span>
+                    <span id="tempUnit" class="unit">°F</span>
+                </div>
+                <div id="pressure-humidity">
+                    Pressure: {{ weather_data.pressure }} hPa, Humidity: {{ weather_data.humidity }}%
+                </div>
+                <div id="wind">Wind: {{ weather_data.wind_speed }} m/s</div>
             </div>
-        </div>
+        {% endif %}
     {% endif %}
 
     </section>
     <footer>
         <p class="footer-credit">
-            <small>All data from <a href="https://api.openweathermap.org" target="_blank">api.openweathermap.org</a> © {{ current_year }}</small>
+            <small>
+                Weather data from <a href="https://api.openweathermap.org" target="_blank">api.openweathermap.org</a>
+                | Images from <a href="https://www.pexels.com" target="_blank">Pexels</a> |
+                © {{ current_year }}</small>
         </p>
     </footer>
 </body>
